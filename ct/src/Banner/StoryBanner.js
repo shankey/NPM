@@ -27,6 +27,7 @@ const styles = theme => ({
 });
 
 class StoryBanner extends Component {
+
     render() {
         const { classes } = this.props;
         console.log(this.props);
@@ -37,9 +38,12 @@ class StoryBanner extends Component {
                 <StaticBanner bgImage={this.props.bgImage} tint={false} />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6} classes={{item: classes.item}}>
-                <Typography align='center' variant='h2' classes={{root: classes.root}}> {this.props.location} </Typography>
+                <Typography color="textSecondary" align='center' variant='h3' classes={{root: classes.root}}> 
 
-                <Typography align='center' variant='h3' classes={{root: classes.root}} style={{color: 'darkslategray'}}> {this.props.title} </Typography>
+                {this.props.normalizedlocation} </Typography>
+
+                <Typography align='center' variant='h4' classes={{root: classes.root}} style={{color: 'darkslategray'}} > 
+                                  {this.props.title} </Typography>
               </Grid>
           </Grid>
         )

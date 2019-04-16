@@ -8,6 +8,8 @@ import purple from '@material-ui/core/colors/purple';
 import StoryAppBar from "../CtAppBar/StoryAppBar.js";
 import StoryBanner from "../Banner/StoryBanner.js"
 import TripContainer from "../Utils/TripContainer"
+import CtFooter from "../Footer/CtFooter"
+import {Helmet} from "react-helmet";
 
 const styles = {
     root: {
@@ -56,16 +58,27 @@ class Story extends React.Component {
 
     return(
         <div>
-          <StoryAppBar position="relative" styleBgColor="#FFFFFF" fontColor="textPrimary"/>
+          <div class="upper">
 
-          <StoryBanner bgImage={this.state.ss.image} title={this.state.ss.title} location={this.state.ss.location} />
-          
-          <TripContainer>
-{/*            <Typography align='center' variant='h3'> {this.state.ss.location} </Typography>*/}
-{/*            <Typography align='center' variant='h3'> {this.state.ss.title} </Typography>*/}
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{ `${this.state.ss.location} - CoupleClaps - Travel and Holidays` } </title>
+            </Helmet>
 
-            <div class="migrate" dangerouslySetInnerHTML={{__html: this.state.ss.story}}></div>
-          </TripContainer>
+            <StoryAppBar position="relative" logoImage='/images/CtLogo-Dark.png' color="secondary" styleBgColor="#FFFFFF" fontColor="textPrimary"/>
+
+            <StoryBanner bgImage={this.state.ss.image} title={this.state.ss.title} location={this.state.ss.location} normalizedlocation={this.state.ss.normalizedlocation}/>
+            
+            <TripContainer>
+  {/*            <Typography align='center' variant='h3'> {this.state.ss.location} </Typography>*/}
+  {/*            <Typography align='center' variant='h3'> {this.state.ss.title} </Typography>*/}
+
+              <div class="migrate" dangerouslySetInnerHTML={{__html: this.state.ss.story}}></div>
+            </TripContainer>
+          </div>
+          <div class="lower">
+            <CtFooter />
+          </div>
 
           
           
@@ -78,7 +91,7 @@ class Story extends React.Component {
   componentDidMount() {
     const { params } = this.props.match
 
-    fetch("http://localhost:9000/story/" + params.id)
+    fetch( process.env.REACT_APP_BASE_URL + "story/" + params.id.split("_")[0])
       .then(
         (res) => {
           console.log("mount error");

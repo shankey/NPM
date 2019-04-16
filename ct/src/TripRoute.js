@@ -6,25 +6,33 @@ import { Switch, Route } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import App from "./App/App"
 import Story from "./Story/Story"
+import ContactUs from "./ContactUs/ContactUs"
 
 
 const theme = createMuiTheme({
   palette: {
     primary: { 
-      main: '#FFFFFF',
+      main: '#000000',
+      contrastText: '#FFFFFF'
     }, 
     secondary: {
-     main: '#11cb5f',
+     main: '#FFFFFF',
+     contrastText: '#000000'
+   },
+   background: {
+    default: '#FFFFFF',
+    paper: '#FFFFFF',
+    other: '#CDCDCD'
    },
    text: {
-    primary: '#000000',
-    secondary: '#FFFFFF'
+    primary: '#FFFFFF',
+    secondary: '#000000'
    }
   },
   typography: {
     htmlFontSize: 21,
     fontFamily: "'Merriweather', serif"
-  },
+  }
   
 });
 
@@ -36,13 +44,16 @@ class TripRoute extends React.Component {
 
   	
     return(
-      <CssBaseline />,
-
-      <MuiThemeProvider theme={theme}>
-        <Switch>
-          <Route exact path='/' component={App}/>
-          <Route exact path='/story/:id' component={Story}/>
-        </Switch>
+      <MuiThemeProvider theme={theme} style={{display: "flex"}}>
+        <React.Fragment>
+          <CssBaseline />
+          <Switch>
+            <Route exact path='/' component={App}/>
+            <Route exact path='/travel' component={App}/>
+            <Route exact path='/story/:id' component={Story}/>
+            <Route exact path='/contactus' component={ContactUs}/>
+          </Switch>
+        </React.Fragment>  
       </MuiThemeProvider>
     );
     

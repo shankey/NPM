@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import SocialIcons from '../SocialMedia/SocialIcons'
 
 
 const styles = theme => ({
@@ -29,7 +30,7 @@ const styles = theme => ({
     background: 'rgba(0,0,0,0)'
   },
   storyTileTint: {
-    top:'50%',
+    top:'40%',
     position: 'relative'
   }
 });
@@ -38,17 +39,21 @@ const styles = theme => ({
 class StaticBanner extends Component {
     render() {
         const { classes } = this.props;
+        const social=null;
+
+        
+
 
         return (
           console.log(this.props),
             <div className={classes.storyTileOuter} style = {{ backgroundImage: 'url(\'' + this.props.bgImage + '\')'}} >
 
-
-
                 <div className={`${classes.storyTileInner} ${this.props.tint ? classes.storyTileInnerTintYes : classes.storyTileInnerTintNo}`} >
                     <div className={classes.storyTileTint}>
-                        <Typography align="center" variant="h6" color="textSecondary" className={classes.grow}>
+                        <Typography align="center" variant="h4" color="textPrimary" className={classes.grow}>
                             {this.props.centerText}
+                            {this.props.isSocial ? ( <SocialIcons /> ) : ( false )}
+                            
                         </Typography>
                     </div>
                 </div>

@@ -27,12 +27,21 @@ const styles = theme => ({
     left: 0,
     bottom: 0,
     right: 0,
-    background: 'rgba(0,0,0,.35)'
+    background: 'rgba(0,0,0,.4)'
   },
   storyTileTint: {
-    top:'30%',
+    top:'35%',
+    [theme.breakpoints.down('xs')]: {
+      top: '40%'
+    },
     position: 'relative',
     textAlign: 'center'
+  },
+  spacing: {
+    padding: 8,
+    [theme.breakpoints.down('sm')]: {
+      padding: 4,
+    },
   }
 });
 
@@ -47,7 +56,7 @@ class GridTiles extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:9000/userstories")
+    fetch(process.env.REACT_APP_BASE_URL + "userstories")
       .then(
         (res) => {
           console.log("mount error");
@@ -80,16 +89,16 @@ class GridTiles extends Component {
     return(
       <div className={classes.root}>
 
-        <Grid container spacing={16}>
+        <Grid container>
 
         {this.state.storyTiles.map(function(item){
           return(
-            <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Grid item xs={12} sm={6} md={4} lg={3} className={classes.spacing}>
               <div className={classes.storyTileOuter} style = {{ backgroundImage: 'url(\'' + item.image + '\')'}} >
-                <Link to={"/story/" + item.id}>
+                <Link to={"/story/" + item.id + "_" + item.normalizedlocation}>
                   <div className={classes.storyTileInner}>
                     <div className={classes.storyTileTint}>
-                      <Typography align="center" variant="h6" color="primary" className={classes.grow} >
+                      <Typography align="center" variant="h5" color="textPrimary" className={classes.grow} >
                         <div dangerouslySetInnerHTML={{__html: item.location}}></div>
                       </Typography>
                     </div>

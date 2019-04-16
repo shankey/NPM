@@ -16,10 +16,15 @@ const styles = theme => ({
       
     },
     container: {
-      marginTop: 24,
-      marginLeft: 48,
-      marginRight: 48,
-      textAlign: 'justify'
+      marginTop: 8,
+      marginLeft: 16,
+      marginRight: 16,
+      textAlign: 'justify',
+      [theme.breakpoints.down('sm')]: {
+        marginLeft: 16,
+        marginRight: 16,
+        marginTop: 8
+      },
     }
 });
 

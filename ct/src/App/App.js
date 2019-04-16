@@ -7,6 +7,8 @@ import StoryAppBar from "../CtAppBar/StoryAppBar.js";
 import GridTiles from "../GridTiles/GridTiles.js"
 import StaticBanner from "../Banner/StaticBanner.js"
 import TripContainer from "../Utils/TripContainer"
+import CtFooter from "../Footer/CtFooter"
+import {Helmet} from "react-helmet";
 
 
 const styles = {
@@ -46,13 +48,26 @@ class App extends React.Component {
     return(
 
         <div>
-          <StoryAppBar position="absolute" styleBgColor="transparent" fontColor="textSecondary"/>
+          <div class="upper">
 
-          <StaticBanner bgImage="/images/banner3-new2.jpg" tint={true}/>
-           
-          <TripContainer>
-              <GridTiles />
-          </TripContainer>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>CoupleClaps - All Things Couples - Travel, Games, Food ... </title>
+
+                
+            </Helmet>
+
+            <StoryAppBar position="absolute" iconAlign="left" logoImage='/images/CtLogo-6.png' color="primary" styleBgColor="transparent" fontColor="textSecondary"/>
+
+            <StaticBanner bgImage="/images/banner3-new2.jpg" tint={true} centerText="Follow us on" isSocial={true}/>
+             
+            <TripContainer>
+                <GridTiles />
+            </TripContainer>
+          </div>
+          <div class="lower">
+            <CtFooter />
+          </div>
         </div>
     );
     
